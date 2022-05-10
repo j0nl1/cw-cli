@@ -24,5 +24,18 @@
             "terra": { "denom": "TERRA", "fractionalDigits": 6 }
         },
         "gasPrice": 0.025
+      },
+      "cliffnet-1": {
+        "chainId": "cliffnet-1",
+        "chainName": "Wasmd Testnet",
+        "addressPrefix": "wasm",
+        "rpc": "https://rpc.cliffnet.cosmwasm.com:443",
+        "rest": "https://lcd.cliffnet.cosmwasm.com",
+        "feeToken": "upebble",
+        "stakingToken": "urock",
+        "coinMap": {
+            "upebble": { "denom": "UPEBBLE", "fractionalDigits": 6 }
+        },
+        "gasPrice": 0.025
       }
 }
