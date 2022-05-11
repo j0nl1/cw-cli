@@ -47,6 +47,13 @@ export const queryContract = async (contractAddress: string, msg: string, opts: 
   console.info("Query succeeded. Receipt:", util.inspect(queryReceipt, false, null, true));
 };
 
+export const executeContract = async (contractAddress: string, msg: string, opts: WasmOptions) => {
+  const { client, address } = await getSigningClientAndAddress(opts.network, opts.address);
+
+  const executeReceipt = await client.execute(address, contractAddress, JSON.parse(msg), "auto");
+  console.info("Execute succeeded. Receipt:", util.inspect(executeReceipt, false, null, true));
+};
+
 const getNetworkAndKey = async (chainId: string, addressName: string): Promise<{ network: Network; key: Key }> => {
   const network = getNetwork(chainId);
   const key = await getKey(addressName);

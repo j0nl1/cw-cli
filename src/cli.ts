@@ -4,7 +4,7 @@ import NetworkCommand from "./commands/networks";
 import WasmCommand from "./commands/wasm";
 
 export default new Command("cwcli")
-  .version("0.0.2")
+  .version("0.0.5")
   .description("Cosmwasm Command Line Interface")
   .usage("[command]")
   .addCommand(KeysCommand)
