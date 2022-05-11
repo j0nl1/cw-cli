@@ -1,4 +1,4 @@
-import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { SigningCosmWasmClient, CosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { fromBase64 } from "@cosmjs/encoding";
 import { DirectSecp256k1Wallet } from "@cosmjs/proto-signing";
 import { GasPrice } from "@cosmjs/stargate";
@@ -12,7 +12,7 @@ import Key from "../interfaces/key";
 interface WasmOptions {
   address: string;
   network: string;
-  label: string;
+  label?: string;
 }
 
 export const uploadWasm = async (filePath: string, opts: WasmOptions) => {
@@ -29,8 +29,22 @@ export const uploadWasm = async (filePath: string, opts: WasmOptions) => {
 export const instantiate = async (codeId: string, msg: string, opts: WasmOptions) => {
   const { client, address } = await getSigningClientAndAddress(opts.network, opts.address);
 
-  const instantiateReceip = await client.instantiate(address, parseInt(codeId), JSON.parse(msg), opts.label, "auto");
+  const instantiateReceip = await client.instantiate(
+    address,
+    parseInt(codeId),
+    JSON.parse(msg),
+    opts.label || "Deployed from CWCLI",
+    "auto"
+  );
   console.info("Instantiate succeeded. Receipt:", util.inspect(instantiateReceip, false, null, true));
+};
+
+export const queryContract = async (contractAddress: string, msg: string, opts: WasmOptions) => {
+  const client = await getClient(opts.network);
+
+  const queryReceipt = await client.queryContractSmart(contractAddress, JSON.parse(msg));
+
+  console.info("Query succeeded. Receipt:", util.inspect(queryReceipt, false, null, true));
 };
 
 const getNetworkAndKey = async (chainId: string, addressName: string): Promise<{ network: Network; key: Key }> => {
@@ -56,4 +70,10 @@ const getSigningClientAndAddress = async (
   });
 
   return { client, address };
+};
+
+const getClient = async (chainId: string): Promise<CosmWasmClient> => {
+  const network = getNetwork(chainId);
+  if (!network) throw new Error(`Network ${chainId} not found`);
+  return await CosmWasmClient.connect(network.rpc);
 };
