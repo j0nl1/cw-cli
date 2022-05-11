@@ -1,10 +1,10 @@
 import { Command } from "commander";
 import { showKey } from "../../services/keys.service";
-import fromNetwork from "../options/fromNetwork";
+import NetworkOption from "../options/network";
 
 export default new Command("show")
   .usage("<name>")
   .argument("<name>")
   .description("Return address depending on network selection")
-  .addOption(fromNetwork)
+  .addOption(NetworkOption)
   .action(showKey);
