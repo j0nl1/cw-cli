@@ -1,7 +1,27 @@
+import fs from "fs";
 import util from "util";
 import Network from "../interfaces/network";
-import loadFile from "../utils/loadFile";
-import { getNetworks, getCustomNetworks, setCustomNetworks } from "./storage.service";
+import { loadFile } from "../utils/fs";
+import defaultNetworks from "../utils/networks.json";
+import { NETWORKS_PATH } from "../utils/constants";
+
+export const getCustomNetworks = (): Network[] => {
+  const customNetworks = fs.readFileSync(NETWORKS_PATH);
+  return JSON.parse(customNetworks.toString("utf-8"));
+};
+
+export const setCustomNetworks = (networks: Network[]) => {
+  fs.writeFileSync(NETWORKS_PATH, JSON.stringify(networks, null, 2));
+};
+
+export const getNetworks = (): Network[] => {
+  return [...(defaultNetworks as unknown as Network[]), ...getCustomNetworks()];
+};
+
+export const getNetwork = (name: string): Network | undefined => {
+  const networks = getNetworks();
+  return networks.find(({ chainId }) => chainId === name);
+};
 
 export const addCustomNetwork = (filePath: string) => {
   const file = loadFile(filePath);
@@ -10,14 +30,15 @@ export const addCustomNetwork = (filePath: string) => {
   const network = JSON.parse(file.toString("utf-8")) as Network;
   const customNetworks = getCustomNetworks();
 
-  setCustomNetworks({ ...customNetworks, [network.chainId]: network });
+  setCustomNetworks([...customNetworks, network]);
 
   console.log(`Added custom network ${network.chainId}`);
 };
 
 export const deleteCustomNetwork = (networkName: string) => {
   const networks = getCustomNetworks();
-  delete networks[networkName];
+  const index = networks.findIndex(({ chainId }) => chainId === networkName);
+  networks.splice(index, 1);
   setCustomNetworks(networks);
   console.log(`Deleted custom network ${networkName}`);
 };
