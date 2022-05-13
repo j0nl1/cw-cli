@@ -1,6 +1,6 @@
 {
   "name": "cosmwasm-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Javier Aceña <j0nl1>",
   "description": "Cosmwasm Command Line Interface",
   "scripts": {
