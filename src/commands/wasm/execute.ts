@@ -5,8 +5,8 @@ import NetworkOption from "../options/network";
 
 export default new Command("execute")
   .description("execute a smart contract method")
-  .usage("<contractAddress> <msg> --address <name> --network <name> [options]")
-  .argument("<contractAddress>")
+  .usage("<address> <msg> --address <name> --network <name> [options]")
+  .argument("<address>")
   .argument("<msg>")
   .addOption(AddressOption)
   .addOption(NetworkOption)
