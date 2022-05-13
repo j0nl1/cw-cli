@@ -28,7 +28,6 @@ Commands:
   keys [command]           manage your keys
   networks [command]       manage networks
   wasm [command]           wasm transaction subcommands
-  help [command]           display help for command
 ```
 
 > **Wasm Command**
@@ -39,14 +38,13 @@ Usage: cwcli wasm [command]
 Wasm transaction subcommands
 
 Options:
-  -h, --help                                 display help for command
+  -h, --help                  display help for command
 
 Commands:
-  upload [options] <wasm file>               Upload a wasm binary
-  query [options] <contractAddress> <msg>    Querying commands for contracts
-  execute [options] <contractAddress> <msg>  execute a smart contract method
-  instantiate [options] <codeId> <msg>       instantiate an uploaded contract
-  help [command]                             display help for command
+  upload <wasm file>          Upload a wasm binary
+  query <address> <msg>       Querying commands for contracts
+  execute <address> <msg>     execute a smart contract method
+  instantiate <codeId> <msg>  instantiate an uploaded contract
 ```
 
 > **Keys Command**
@@ -57,14 +55,13 @@ Usage: cwcli keys [command]
 Manage your keys
 
 Options:
-  -h, --help             display help for command
+  -h, --help     display help for command
 
 Commands:
-  add <name>             Add an encrypted private key (either newly generated or recovered), encrypt it, and save to keyring
-  delete <name>          Delete keys from the cli
-  show [options] <name>  Return address depending on network selection
-  list                   Return a list of all public keys stored by this cli
-  help [command]         display help for command                     display help for command
+  add <name>     Add an encrypted private key (either newly generated or recovered), encrypt it, and save to keyring
+  delete <name>  Delete keys from the cli
+  show <name>    Return address depending on network selection
+  list           Return a list of all public keys stored by this cli
 ```
 
 > **Network Command**
@@ -81,7 +78,6 @@ Commands:
   add <filePath>  Load a custom network
   delete <name>   Remove a custom network
   list            show a list of networks
-  help [command]  display help for command
 ```
 
 
