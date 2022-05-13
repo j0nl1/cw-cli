@@ -10,4 +10,5 @@ export default new Command("cwcli")
   .addCommand(KeysCommand)
   .addCommand(NetworkCommand)
   .addCommand(WasmCommand)
+  .addHelpCommand(false)
   .parse(process.argv);
