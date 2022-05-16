@@ -1,0 +1,41 @@
+[
+  {
+    "chainId": "uni-2",
+    "chainName": "Juno Tesnet",
+    "addressPrefix": "juno",
+    "rpc": "https://rpc.uni.junonetwork.io/",
+    "rest": "https://api.uni.junonetwork.io/",
+    "feeToken": "ujunox",
+    "stakingToken": "ujunox",
+    "coinMap": {
+      "ujunox": { "denom": "JUNOX", "fractionalDigits": 6 }
+    },
+    "gasPrice": 0.025
+  },
+  {
+    "chainId": "bombay-12",
+    "chainName": "Terra Testnet",
+    "addressPrefix": "terra",
+    "rpc": "https://bombay.stakesystems.io",
+    "rest": "https://bombay.stakesystems.io:2053",
+    "feeToken": "terra",
+    "stakingToken": "terra",
+    "coinMap": {
+      "terra": { "denom": "TERRA", "fractionalDigits": 6 }
+    },
+    "gasPrice": 0.025
+  },
+  {
+    "chainId": "cliffnet-1",
+    "chainName": "Wasmd Testnet",
+    "addressPrefix": "wasm",
+    "rpc": "https://rpc.cliffnet.cosmwasm.com:443",
+    "rest": "https://lcd.cliffnet.cosmwasm.com",
+    "feeToken": "upebble",
+    "stakingToken": "urock",
+    "coinMap": {
+      "upebble": { "denom": "UPEBBLE", "fractionalDigits": 6 }
+    },
+    "gasPrice": 0.025
+  }
+]

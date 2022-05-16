@@ -1,6 +1,6 @@
 {
   "name": "cosmwasm-cli",
-  "version": "0.0.2",
+  "version": "0.1.6",
   "author": "Javier Aceña <j0nl1>",
   "description": "Cosmwasm Command Line Interface",
   "scripts": {
@@ -10,7 +10,9 @@
     "postinstall": "node build/utils/postinstall.js",
     "prepublish": "npm run build"
   },
-  "files": [ "build" ],
+  "files": [
+    "build"
+  ],
   "bin": {
     "cwcli": "bin/cli"
   },
@@ -25,10 +27,14 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
+    "@cosmjs/amino": "^0.28.4",
     "@cosmjs/cosmwasm-stargate": "^0.28.4",
+    "@cosmjs/crypto": "^0.28.4",
+    "@cosmjs/encoding": "^0.28.4",
     "@cosmjs/proto-signing": "^0.28.4",
     "@cosmjs/stargate": "^0.28.4",
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "keytar": "^7.9.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
